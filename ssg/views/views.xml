@@ -1,0 +1,146 @@
+<odoo>
+    <data>
+    
+
+        <menuitem name="SSG" id="ssg.menu_root" sequence="1"/>
+    <menuitem name="SSG" id="ssg.menu_ssg"
+              parent="ssg.menu_root" sequence="1"/>
+
+    
+              
+
+        <!-- Vista Formulario para ssg.empresa_contratadora -->
+        <record model="ir.ui.view" id="view_empresa_contratadora_form">
+            <field name="name">empresa_contratadora.form</field>
+            <field name="model">ssg.empresa_contratadora</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!-- Campos y botones aquí -->
+                    <group>
+                        <field name="name"/>
+                        <field name="proyectos_contratados"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para ssg.empresa_contratadora -->
+        <record model="ir.actions.act_window" id="ssg_empresa_contratadora_action_window">
+            <field name="name">ssg.empresa_contratadora.action.window</field>
+            <field name="res_model">ssg.empresa_contratadora</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menú para ssg.empresa_contratadora -->
+        <menuitem name="Empresas Contratadoras" id="ssg.menu_empresa_contratadora"
+                  parent="ssg.menu_ssg" action="ssg_empresa_contratadora_action_window" sequence="2"/>
+
+
+        <!-- Vista y Acción para ssg.proyecto -->
+        <record model="ir.ui.view" id="view_proyecto_form">
+            <field name="name">proyecto.form</field>
+            <field name="model">ssg.proyecto</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!-- Campos y botones aquí -->
+                    <group>
+                        <field name="name"/>
+                        <field name="empresa_contratadora_id"/>
+                        <field name="jefe_proyecto_id"/>
+                        <field name="analistas_ids"/>
+                        <field name="tareas_ids"/>
+                        <field name="state"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ssg_proyecto_action_window">
+            <field name="name">ssg.proyecto.action.window</field>
+            <field name="res_model">ssg.proyecto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Proyectos" id="ssg.menu_proyecto"
+                  parent="ssg.menu_ssg" action="ssg_proyecto_action_window" sequence="3"/>
+
+
+        <!-- Vista y Acción para ssg.tarea -->
+        <record model="ir.ui.view" id="view_tarea_form">
+            <field name="name">tarea.form</field>
+            <field name="model">ssg.tarea</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!-- Campos y botones aquí -->
+                    <group>
+                        <field name="name"/>
+                        <field name="proyecto_id"/>
+                        <field name="programador_ids"/>
+                        <field name="subtareas_ids"/>
+                        <field name="total_subtareas"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ssg_tarea_action_window">
+            <field name="name">ssg.tarea.action.window</field>
+            <field name="res_model">ssg.tarea</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Tareas" id="ssg.menu_tarea"
+                  parent="ssg.menu_ssg" action="ssg_tarea_action_window" sequence="4"/>
+
+
+        <!-- Vista y Acción para ssg.subtarea -->
+        <record model="ir.ui.view" id="view_subtarea_form">
+            <field name="name">subtarea.form</field>
+            <field name="model">ssg.subtarea</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!-- Campos y botones aquí -->
+                    <group>
+                        <field name="name"/>
+                        <field name="tarea_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ssg_subtarea_action_window">
+            <field name="name">ssg.subtarea.action.window</field>
+            <field name="res_model">ssg.subtarea</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Subtareas" id="ssg.menu_subtarea"
+                  parent="ssg.menu_ssg" action="ssg_subtarea_action_window" sequence="5"/>
+
+
+        <record id="view_project_form_inherited" model="ir.ui.view">
+        <field name="name">project.form.inherited</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <data>
+                <!-- Puedes agregar o modificar campos aquí -->
+                <field name="kanban_state" position="after">
+                    <!-- Agrega tu campo personalizado aquí -->
+                    <field name="custom_field" string="Campo Personalizado"/>
+                </field>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_project_task_form_inherited">
+            <field name="name">action_view_project_task_form_inherited</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <menuitem name="Tarea personalizada" id="ssg.inherited"
+                  parent="ssg.menu_ssg" action="action_view_project_task_form_inherited" sequence="6"/>
+    </data>
+
+</odoo>

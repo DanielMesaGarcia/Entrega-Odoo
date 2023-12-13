@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+        <record id="product_category_estropeado" model="product.category"> 
+            <field name="name">Estropeado</field>
+        </record>
+        <record id="product_category_caducado" model="product.category"> 
+            <field name="name">Caducado</field>
+        </record>
+    </data>
+</odoo>

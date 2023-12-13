@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <!-- Report Definition -->
+        <record model="ir.actions.report" id="action_proyecto_report">
+            <field name="name">Proyecto Report</field>
+            <field name="model">ssg.proyecto</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ssg.proyecto_report_template</field>
+            <field name="report_file">ssg.proyecto_report_template</field>
+            <field name="binding_model_id" ref="model_ssg_proyecto"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- Report Template -->
+        <template id="ssg.proyecto_report_template">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <br/>
+                    <t t-foreach="docs" t-as="proyecto">
+                        <table>
+                            <tr>
+                                <td colspan="3" align="center">
+                                    <b><span t-field="proyecto.name"/></b>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td width="200">
+                                    <b>Empresa Contratadora:</b> <span t-field="proyecto.empresa_contratadora_id.name"/>
+                                </td>
+                                <td width="200">
+                                    <b>Jefe de Proyecto:</b> <span t-field="proyecto.jefe_proyecto_id.name"/>
+                                </td>
+                                <td width="200">
+                                    <b>Estado del Proyecto:</b> <span t-field="proyecto.state"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <b>Analistas Asignados:</b>
+                                    <span t-foreach="proyecto.analistas_ids" t-as="analista">
+                                        <t t-esc="analista.name"/><br/>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <b>Tareas del Proyecto:</b>
+                                    <span t-foreach="proyecto.tareas_ids" t-as="tarea">
+                                        <t t-esc="tarea.name"/><br/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

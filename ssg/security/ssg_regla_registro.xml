@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Regla de acceso para los programadores -->
+        <record id="rule_programador_subtareas" model="ir.rule">
+            <field name="name">Regla Programador Subtareas</field>
+            <field name="model_id" ref="model_ssg_subtarea"/>
+            <field name="domain_force">[('tarea_id.programador_ids', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups" eval="[(4, ref('ssg.group_programador'))]"/>
+        </record>
+    </data>
+</odoo>
