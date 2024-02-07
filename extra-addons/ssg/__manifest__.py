@@ -30,6 +30,8 @@
         'reports/proyecto_report.xml',
         'security/ssg_regla_registro.xml',
         
+        # 'views/config_settings.xml',
+        
         # 'security/incidencias_reglas_registro.xml',
         # 'reports/municipios_report.xml',
         # 'reports/municipios_report_view.xml',
