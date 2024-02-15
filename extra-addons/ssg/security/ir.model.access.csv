@@ -13,3 +13,4 @@ access_subtarea,access_subtarea,model_ssg_subtarea,group_analista,1,1,1,1
 access_admin_subtarea,access_admin,model_ssg_subtarea,group_admin,1,1,1,1
 access_subtarea_programador,access_subtarea,model_ssg_subtarea,group_programador,1,1,1,1
 access_subtarea_jefe,access_subtarea,model_ssg_subtarea,group_jefe_proyecto,1,0,0,0
+access_empresas_jefe,access_empresas,model_ssg_empresas,group_jefe_proyecto,1,1,1,1

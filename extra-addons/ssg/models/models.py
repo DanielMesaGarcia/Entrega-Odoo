@@ -72,3 +72,13 @@ class MiProyectoTask(models.Model):
     _inherit = 'project.task'
 
     custom_field = fields.Char(string='custom_field')
+
+# Nuevo
+class RegistroEmpresas(models.Model):
+    _name = 'ssg.empresas'
+    _description = 'Registro de creación y modificación de empresas'
+
+    nombre_usuario = fields.Char(string='Nombre de usuario')
+    nombre_empresa = fields.Char(string='Nombre de la empresa')
+    fecha_creacion_modificacion = fields.Datetime(string='Fecha/hora de la creación/modificación')
+    tipo_registro = fields.Selection([('creacion', 'Creación'), ('modificacion', 'Modificación')], string='Tipo de registro')

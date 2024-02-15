@@ -143,4 +143,18 @@
                   parent="ssg.menu_ssg" action="action_view_project_task_form_inherited" sequence="6"/>
     </data>
 
+
+<!-- Nuevo -->
+
+    <record model="ir.actions.act_window" id="ssg_empresas_action_window">
+            <field name="name">ssg.empresas.action.window</field>
+            <field name="res_model">ssg.empresas</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <menuitem name="SSG2" id="ssg.menu_ssg"
+              parent="ssg.menu_root" sequence="2"/>
+
+    <menuitem name="Ajustes" id="ssg.empresas"
+                  parent="ssg.menu_ssg" action="ssg_empresas_action_window" sequence="6"/>
 </odoo>
