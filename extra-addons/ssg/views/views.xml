@@ -157,4 +157,51 @@
 
     <menuitem name="Ajustes" id="ssg.empresas"
                   parent="ssg.menu_ssg" action="ssg_empresas_action_window" sequence="6"/>
+
+<record id="ssg_config_settings_view_form" model="ir.ui.view">
+    <field name="name">ssg.config.settings.view.form.inherit</field>
+    <field name="model">ssg.settings</field>
+    <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//div[hasclass('settings')]" position="inside">
+            <div class="app_settings_block" data-key="project_settings">
+                <h2>Proyecto Management</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <field name="show_task" string="Show Task"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </field>
+</record>
+
+
+<record id="ssg_config_settings_action" model="ir.actions.act_window">
+    <field name="name">Configuration</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">res.config.settings</field>
+    <field name="view_mode">form</field>
+    <field name="target">inline</field>
+    <field name="context">{'module' : 'ssg'}</field>
+</record>
+
+<menuitem id="ssg_management_menu_root"
+         name="Gestión de SSG"
+         sequence="1"/>
+
+<menuitem id="ssg_management_settings_menu_action"
+         name="Configuración"
+         parent="ssg_management_menu_root"
+         sequence="6"/>
+
+<menuitem id="ssg_config_settings_menu_action"
+         name="Ajustes"
+         parent="ssg_management_settings_menu_action"
+         action="ssg_config_settings_action"
+         sequence="7"/>
+
 </odoo>
