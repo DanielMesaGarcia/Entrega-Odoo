@@ -46,13 +46,14 @@ class Proyecto(models.Model):
     # ****************************************************************
     show_task = fields.Boolean(string="Mostrar tareas", default=lambda self: self._get_show_task)
 
+    # new
     def _get_show_task(self):
-        param = self.env['ir.config_parameter'].sudo().get_param('ssg.show_task')
-        return param.lower() == 'true' if param else False
+        show_task = self.env['ir.config_parameter'].sudo()
+        self.show_task = show_task.get_param('ssg.show_task')
 
-class Settings(models.Model):
+class Settings(models.TransientModel):
     _inherit = 'res.config.settings'
-    _name = 'ssg.settings'
+    # _name = 'ssg.settings'
     show_task = fields.Boolean(String='Ver tareas', config_parameter='ssg.show_task')
 
 
