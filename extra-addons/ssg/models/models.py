@@ -69,6 +69,11 @@ class Proyecto(models.Model):
         ('desarrollo', 'En Desarrollo'),
         ('finalizado', 'Finalizado'),
     ], default='analisis', string='Estado del Proyecto')
+    nuevo_campo = fields.Selection([
+        ('opcion1', 'Opción 1'),
+        ('opcion2', 'Opción 2'),
+        ('opcion3', 'Opción 3'),
+    ], string='Campo con Desplegable', default='opcion1')
     # ****************************************************************
     show_task = fields.Boolean(string="Mostrar tareas", default=lambda self: self._get_show_task)
     text_field = fields.Char(string="Mostrar tareas", default=lambda self: self.text_field)

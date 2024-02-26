@@ -50,6 +50,7 @@
                         <field name="analistas_ids"/>
                         <field name="tareas_ids"/>
                         <field name="state"/>
+                        <field name="nuevo_campo"/>
                     </group>
                 </form>
             </field>
