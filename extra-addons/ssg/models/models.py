@@ -29,6 +29,32 @@ class EmpresaContratadora(models.Model):
     name = fields.Char(string='Nombre de la Empresa', required=True)
     proyectos_contratados = fields.One2many('ssg.proyecto', 'empresa_contratadora_id', string='Proyectos Contratados')
 
+    @api.model
+    def create(self, vals):
+        # Creación de la empresa
+        empresa = super(EmpresaContratadora, self).create(vals)
+        # Registro de la creación
+        self.env['ssg.empresas'].create({
+            'nombre_usuario': self.env.user.name,
+            'nombre_empresa': empresa.name,
+            'fecha_creacion_modificacion': fields.Datetime.now(),
+            'tipo_registro': 'creacion'
+        })
+        return empresa
+
+    def write(self, vals):
+        # Modificación de la empresa
+        result = super(EmpresaContratadora, self).write(vals)
+        # Registro de la modificación
+        for empresa in self:
+            self.env['ssg.empresas'].create({
+                'nombre_usuario': self.env.user.name,
+                'nombre_empresa': empresa.name,
+                'fecha_creacion_modificacion': fields.Datetime.now(),
+                'tipo_registro': 'modificacion'
+            })
+        return result
+
 class Proyecto(models.Model):
     _name = 'ssg.proyecto'
     _description = 'Proyectos de desarrollo de software'
