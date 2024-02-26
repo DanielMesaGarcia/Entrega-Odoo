@@ -71,16 +71,22 @@ class Proyecto(models.Model):
     ], default='analisis', string='Estado del Proyecto')
     # ****************************************************************
     show_task = fields.Boolean(string="Mostrar tareas", default=lambda self: self._get_show_task)
+    text_field = fields.Char(string="Mostrar tareas", default=lambda self: self.text_field)
 
     # new
     def _get_show_task(self):
         show_task = self.env['ir.config_parameter'].sudo()
         self.show_task = show_task.get_param('ssg.show_task')
 
+    def _get_text_field(self):
+        text_field = self.env['ir.config_parameter'].sudo()
+        self.text_field = text_field.get_param('ssg.text_field')
+
 class Settings(models.TransientModel):
     _inherit = 'res.config.settings'
-    # _name = 'ssg.settings'
+    # _name = 'ssg.settings' 
     show_task = fields.Boolean(String='Ver tareas', config_parameter='ssg.show_task')
+    text_field = fields.Char(String='Ver tareas', config_parameter='ssg.text_field')
 
 
 # **************************************************************************

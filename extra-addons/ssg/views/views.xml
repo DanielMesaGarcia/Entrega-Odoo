@@ -170,8 +170,10 @@
                     <div class="col-12 col-lg-6 o_setting_box">
                         <div class="o_setting_left_pane"/>
                         <div class="o_setting_right_pane">
+                            <span class="o_form_label">Checkmark</span>
                             <field name="show_task" string="Show Task"/>
-                            <span class="o_form_label">Mostrar</span>
+                            <span class="o_form_label">Text field</span>
+                            <field name="text_field" string="Text Field"/>
                             <div class="text-muted">
                                 Descripcion
                             </div>
