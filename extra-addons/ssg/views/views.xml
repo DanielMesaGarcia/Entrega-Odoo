@@ -1,13 +1,17 @@
 <odoo>
     <data>
-    
 
-        <menuitem name="SSG" id="ssg.menu_root" sequence="1"/>
-    <menuitem name="SSG" id="ssg.menu_ssg"
-              parent="ssg.menu_root" sequence="1"/>
 
-    
-              
+        <menuitem name="SSG" id="ssg.menu_root" sequence="1" />
+        <menuitem name="SSG" id="ssg.menu_ssg"
+            parent="ssg.menu_root" sequence="1" />
+
+        <record id="ssg_config_settings_menu_action_custom" model="ir.ui.menu">
+            <field name="name">Mi Consulta</field>
+            <field name="parent_id" ref="ssg_management_settings_menu_action" />
+            <field name="action" ref="ssg_config_settings_action" />
+            <field name="sequence" type="int">8</field>
+        </record>
 
         <!-- Vista Formulario para ssg.empresa_contratadora -->
         <record model="ir.ui.view" id="view_empresa_contratadora_form">
@@ -15,10 +19,10 @@
             <field name="model">ssg.empresa_contratadora</field>
             <field name="arch" type="xml">
                 <form>
-                    <!-- Campos y botones aquí -->
                     <group>
-                        <field name="name"/>
-                        <field name="proyectos_contratados"/>
+                        <field name="name" />
+                        <field name="proyectos_contratados" />
+                        <field name="nuevo_campo" widget="selection" options="{'selection': [('opcion1', 'Opción 1'), ('opcion2', 'Opción 2'), ('opcion3', 'Opción 3')]}"/>
                     </group>
                 </form>
             </field>
@@ -33,24 +37,32 @@
 
         <!-- Menú para ssg.empresa_contratadora -->
         <menuitem name="Empresas Contratadoras" id="ssg.menu_empresa_contratadora"
-                  parent="ssg.menu_ssg" action="ssg_empresa_contratadora_action_window" sequence="2"/>
+            parent="ssg.menu_ssg" action="ssg_empresa_contratadora_action_window" sequence="2" />
 
 
         <!-- Vista y Acción para ssg.proyecto -->
-        <record model="ir.ui.view" id="view_proyecto_form">
+        <record id="view_proyecto_form" model="ir.ui.view">
             <field name="name">proyecto.form</field>
             <field name="model">ssg.proyecto</field>
             <field name="arch" type="xml">
                 <form>
-                    <!-- Campos y botones aquí -->
                     <group>
                         <field name="name"/>
+<<<<<<< HEAD
                         <field name="empresa_contratadora_id"/>
                         <field name="jefe_proyecto_id"/>
                         <field name="analistas_ids"/>
                         <field name="tareas_ids"/>
                         <field name="state"/>
                         <field name="nuevo_campo"/>
+=======
+                        <field name="show_task" attrs="{'invisible': [('show_task', '=', False)]}"/>
+                        <field name="empresa_contratadora_id" />
+                        <field name="jefe_proyecto_id" />
+                        <field name="analistas_ids" />
+                        <field name="tareas_ids" />
+                        <field name="state" />
+>>>>>>> bcedb2ee37633669cb6aa83022cde31be858d9b9
                     </group>
                 </form>
             </field>
@@ -63,7 +75,7 @@
         </record>
 
         <menuitem name="Proyectos" id="ssg.menu_proyecto"
-                  parent="ssg.menu_ssg" action="ssg_proyecto_action_window" sequence="3"/>
+            parent="ssg.menu_ssg" action="ssg_proyecto_action_window" sequence="3" />
 
 
         <!-- Vista y Acción para ssg.tarea -->
@@ -74,11 +86,11 @@
                 <form>
                     <!-- Campos y botones aquí -->
                     <group>
-                        <field name="name"/>
-                        <field name="proyecto_id"/>
-                        <field name="programador_ids"/>
-                        <field name="subtareas_ids"/>
-                        <field name="total_subtareas"/>
+                        <field name="name" />
+                        <field name="proyecto_id" />
+                        <field name="programador_ids" />
+                        <field name="subtareas_ids" />
+                        <field name="total_subtareas" />
                     </group>
                 </form>
             </field>
@@ -91,7 +103,7 @@
         </record>
 
         <menuitem name="Tareas" id="ssg.menu_tarea"
-                  parent="ssg.menu_ssg" action="ssg_tarea_action_window" sequence="4"/>
+            parent="ssg.menu_ssg" action="ssg_tarea_action_window" sequence="4" />
 
 
         <!-- Vista y Acción para ssg.subtarea -->
@@ -102,8 +114,8 @@
                 <form>
                     <!-- Campos y botones aquí -->
                     <group>
-                        <field name="name"/>
-                        <field name="tarea_id"/>
+                        <field name="name" />
+                        <field name="tarea_id" />
                     </group>
                 </form>
             </field>
@@ -116,100 +128,101 @@
         </record>
 
         <menuitem name="Subtareas" id="ssg.menu_subtarea"
-                  parent="ssg.menu_ssg" action="ssg_subtarea_action_window" sequence="5"/>
+            parent="ssg.menu_ssg" action="ssg_subtarea_action_window" sequence="5" />
 
 
         <record id="view_project_form_inherited" model="ir.ui.view">
-        <field name="name">project.form.inherited</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
-        <field name="arch" type="xml">
-            <data>
-                <!-- Puedes agregar o modificar campos aquí -->
-                <field name="kanban_state" position="after">
-                    <!-- Agrega tu campo personalizado aquí -->
-                    <field name="custom_field" string="Campo Personalizado"/>
-                </field>
-            </data>
-        </field>
-    </record>
+            <field name="name">project.form.inherited</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2" />
+            <field name="arch" type="xml">
+                <data>
+                    <!-- Puedes agregar o modificar campos aquí -->
+                    <field name="kanban_state" position="after">
+                        <!-- Agrega tu campo personalizado aquí -->
+                        <field name="custom_field" string="Campo Personalizado" />
+                    </field>
+                </data>
+            </field>
+        </record>
 
-    <record model="ir.actions.act_window" id="action_view_project_task_form_inherited">
+        <record model="ir.actions.act_window" id="action_view_project_task_form_inherited">
             <field name="name">action_view_project_task_form_inherited</field>
             <field name="res_model">project.task</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-    <menuitem name="Tarea personalizada" id="ssg.inherited"
-                  parent="ssg.menu_ssg" action="action_view_project_task_form_inherited" sequence="6"/>
+        <menuitem name="Tarea personalizada" id="ssg.inherited"
+            parent="ssg.menu_ssg" action="action_view_project_task_form_inherited" sequence="6" />
     </data>
 
 
-<!-- Nuevo -->
+    <!-- Nuevo -->
 
     <record model="ir.actions.act_window" id="ssg_empresas_action_window">
-            <field name="name">ssg.empresas.action.window</field>
-            <field name="res_model">ssg.empresas</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+        <field name="name">ssg.empresas.action.window</field>
+        <field name="res_model">ssg.empresas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
     <menuitem name="SSG2" id="ssg.menu_ssg"
-              parent="ssg.menu_root" sequence="2"/>
+        parent="ssg.menu_root" sequence="2" />
 
     <menuitem name="Ajustes" id="ssg.empresas"
-                  parent="ssg.menu_ssg" action="ssg_empresas_action_window" sequence="6"/>
+        parent="ssg.menu_ssg" action="ssg_empresas_action_window" sequence="6" />
 
-<record id="ssg_config_settings_view_form" model="ir.ui.view">
-    <field name="name">ssg.config.settings.view.form.inherit</field>
-    <field name="model">res.config.settings</field>
-    <field name="inherit_id" ref="base.res_config_settings_view_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="//div[hasclass('settings')]" position="inside">
-            <div class="app_settings_block" data-string="Gestón" string="SSG" data-key="project_settings">
-                <h2>Proyecto Management</h2>
-                <div class="row mt16 o_settings_container">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane"/>
-                        <div class="o_setting_right_pane">
-                            <span class="o_form_label">Checkmark</span>
-                            <field name="show_task" string="Show Task"/>
-                            <span class="o_form_label">Text field</span>
-                            <field name="text_field" string="Text Field"/>
-                            <div class="text-muted">
-                                Descripcion
+    <record id="ssg_config_settings_view_form" model="ir.ui.view">
+        <field name="name">ssg.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Gestón" string="SSG"
+                    data-key="project_settings">
+                    <h2>Proyecto Management</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane" />
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Checkmark</span>
+                                <field name="show_task" string="Show Task" />
+                                <span class="o_form_label">Text field</span>
+                                <field name="text_field" string="Text Field" />
+                                <div class="text-muted">
+                                    Descripcion
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </xpath>
-    </field>
-</record>
+            </xpath>
+        </field>
+    </record>
 
 
-<record id="ssg_config_settings_action" model="ir.actions.act_window">
-    <field name="name">Configuration</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">res.config.settings</field>
-    <field name="view_mode">form</field>
-    <field name="target">inline</field>
-    <field name="context">{'module' : 'ssg'}</field>
-</record>
+    <record id="ssg_config_settings_action" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'ssg'}</field>
+    </record>
 
-<menuitem id="ssg_management_menu_root"
-         name="Gestión de SSG"
-         sequence="1"/>
+    <menuitem id="ssg_management_menu_root"
+        name="Gestión de SSG"
+        sequence="1" />
 
-<menuitem id="ssg_management_settings_menu_action"
-         name="Configuración"
-         parent="ssg_management_menu_root"
-         sequence="6"/>
+    <menuitem id="ssg_management_settings_menu_action"
+        name="Configuración"
+        parent="ssg_management_menu_root"
+        sequence="6" />
 
-<menuitem id="ssg_config_settings_menu_action"
-         name="Ajustes"
-         parent="ssg_management_settings_menu_action"
-         action="ssg_config_settings_action"
-         sequence="7"/>
+    <menuitem id="ssg_config_settings_menu_action"
+        name="Ajustes"
+        parent="ssg_management_settings_menu_action"
+        action="ssg_config_settings_action"
+        sequence="7" />
 
 </odoo>
