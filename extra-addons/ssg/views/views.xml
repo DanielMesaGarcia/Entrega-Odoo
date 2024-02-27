@@ -44,7 +44,7 @@
                 <form>
                     <!-- Campos y botones aquí -->
                     <group>
-                        <field name="name"/>
+                        <field name="name" attrs="{'invisible': [('nuevo_campo', '!=', 'opcion1')]}"/>
                         <field name="empresa_contratadora_id"/>
                         <field name="jefe_proyecto_id"/>
                         <field name="analistas_ids"/>
