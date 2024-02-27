@@ -148,13 +148,27 @@
     <record model="ir.actions.act_window" id="ssg_empresas_action_window">
         <field name="name">ssg.empresas.action.window</field>
         <field name="res_model">ssg.empresas</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree</field>
     </record>
+
+    <record id="view_tree_ssg_empresas" model="ir.ui.view">
+    <field name="name">ssg.empresas.tree</field>
+    <field name="model">ssg.empresas</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="nombre_usuario"/>
+            <field name="nombre_empresa"/>
+            <field name="fecha_creacion_modificacion"/>
+            <field name="tipo_registro"/>
+            <!-- Agrega más campos según lo necesario -->
+        </tree>
+    </field>
+</record>
 
     <menuitem name="SSG2" id="ssg.menu_ssg"
         parent="ssg.menu_root" sequence="2" />
 
-    <menuitem name="Ajustes" id="ssg.empresas"
+    <menuitem name="Registro" id="ssg.empresas"
         parent="ssg.menu_ssg" action="ssg_empresas_action_window" sequence="6" />
 
     <record id="ssg_config_settings_view_form" model="ir.ui.view">

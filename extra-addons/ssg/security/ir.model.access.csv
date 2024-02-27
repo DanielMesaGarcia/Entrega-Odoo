@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_empresa_contratadora,access_empresa_contratadora,model_ssg_empresa_contratadora,group_jefe_proyecto,1,1,1,1
+access_jefe,access_jefe,model_ssg_empresa_contratadora,group_jefe_proyecto,1,1,1,1
 access_admin,access_admin,model_ssg_empresa_contratadora,group_admin,1,1,1,1
 access_empresa_contratadora_analista,access_empresa_contratadora,model_ssg_empresa_contratadora,group_analista,1,0,0,0
 access_proyecto,access_proyecto,model_ssg_proyecto,group_jefe_proyecto,1,1,1,1
@@ -13,5 +13,5 @@ access_subtarea,access_subtarea,model_ssg_subtarea,group_analista,1,1,1,1
 access_admin_subtarea,access_admin,model_ssg_subtarea,group_admin,1,1,1,1
 access_subtarea_programador,access_subtarea,model_ssg_subtarea,group_programador,1,1,1,1
 access_subtarea_jefe,access_subtarea,model_ssg_subtarea,group_jefe_proyecto,1,0,0,0
-access_empresas_jefe,access_empresas,model_ssg_empresas,group_jefe_proyecto,1,0,0,0
+access_empresas_jefe,access_empresas,model_ssg_empresas,group_jefe_proyecto,1,1,1,0
 access_empresas_admin,access_empresas_admin,model_ssg_empresas,group_admin,1,1,1,1
