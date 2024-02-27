@@ -1,3 +1,5 @@
+
+
 # -*- coding: utf-8 -*-
 
 # from odoo import models, fields, api
@@ -28,8 +30,6 @@ class EmpresaContratadora(models.Model):
 
     name = fields.Char(string='Nombre de la Empresa', required=True)
     proyectos_contratados = fields.One2many('ssg.proyecto', 'empresa_contratadora_id', string='Proyectos Contratados')
-    nuevo_campo = fields.Selection([('opcion1', 'Opción 1'), ('opcion2', 'Opción 2'), ('opcion3', 'Opción 3')],
-                                   string='Nuevo Campo')
 
     @api.model
     def create(self, vals):
@@ -71,7 +71,6 @@ class Proyecto(models.Model):
         ('desarrollo', 'En Desarrollo'),
         ('finalizado', 'Finalizado'),
     ], default='analisis', string='Estado del Proyecto')
-<<<<<<< HEAD
     nuevo_campo = fields.Selection([
         ('opcion1', 'Opción 1'),
         ('opcion2', 'Opción 2'),
@@ -79,12 +78,9 @@ class Proyecto(models.Model):
     ], string='Campo con Desplegable', default='opcion1')
     # ****************************************************************
     show_task = fields.Boolean(string="Mostrar tareas", default=lambda self: self._get_show_task)
-=======
-    
-    show_task = fields.Boolean(string="Mostrar tareas", default=True)
->>>>>>> bcedb2ee37633669cb6aa83022cde31be858d9b9
     text_field = fields.Char(string="Mostrar tareas", default=lambda self: self.text_field)
 
+    # new
     def _get_show_task(self):
         show_task = self.env['ir.config_parameter'].sudo()
         self.show_task = show_task.get_param('ssg.show_task')
@@ -92,7 +88,6 @@ class Proyecto(models.Model):
     def _get_text_field(self):
         text_field = self.env['ir.config_parameter'].sudo()
         self.text_field = text_field.get_param('ssg.text_field')
-
 
 class Settings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -140,3 +135,4 @@ class RegistroEmpresas(models.Model):
     nombre_empresa = fields.Char(string='Nombre de la empresa')
     fecha_creacion_modificacion = fields.Datetime(string='Fecha/hora de la creación/modificación')
     tipo_registro = fields.Selection([('creacion', 'Creación'), ('modificacion', 'Modificación')], string='Tipo de registro')
+
